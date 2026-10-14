@@ -3,27 +3,27 @@ class Comparegraph < Formula
   desc "Compare many cloned repositories against taxonomy packs: one code graph, cited claims, a matrix"
   homepage "https://github.com/massrelay-ai/comparegraph"
   license "Apache-2.0"
-  version "0.1.0"
+  version "0.1.1"
 
   on_macos do
     on_arm do
-      url "https://github.com/massrelay-ai/comparegraph/releases/download/v0.1.0/comparegraph-darwin-arm64"
-      sha256 "e0e512c4d90f14c6f1daa1f1e2b7f39c053dd84d7336ef538c01ba6bc6001a6e"
+      url "https://github.com/massrelay-ai/comparegraph/releases/download/v0.1.1/comparegraph-darwin-arm64"
+      sha256 "e7021aa32cff8022e115f8421dfdb0ab59aa02393e84bbda7cacb240b7b192fc"
     end
     on_intel do
-      url "https://github.com/massrelay-ai/comparegraph/releases/download/v0.1.0/comparegraph-darwin-x64"
-      sha256 "3c19415eb6c7ace80f31cd23b20a6559c632047bbe9cbd61f22ee00256ddcb3d"
+      url "https://github.com/massrelay-ai/comparegraph/releases/download/v0.1.1/comparegraph-darwin-x64"
+      sha256 "e91c70071645adc4dfe8bf4645e3b2e688286498619e28884caf2594bf6d2616"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/massrelay-ai/comparegraph/releases/download/v0.1.0/comparegraph-linux-arm64"
-      sha256 "c8d582b720f57b4b71dcae17c13eeb7779d2397920c128caf6ca7b9419d91e94"
+      url "https://github.com/massrelay-ai/comparegraph/releases/download/v0.1.1/comparegraph-linux-arm64"
+      sha256 "d82a04a38f5724acb520a012035204438e493dfd710da31237aa27c89c501492"
     end
     on_intel do
-      url "https://github.com/massrelay-ai/comparegraph/releases/download/v0.1.0/comparegraph-linux-x64"
-      sha256 "5bca6c05c6f328feb9b34b19805ba672d598b13eb71ef762bdc5273e34e9900b"
+      url "https://github.com/massrelay-ai/comparegraph/releases/download/v0.1.1/comparegraph-linux-x64"
+      sha256 "a1cfff62359da814ec52c4028147efef5e799b1982df9f53a713fe757d5adc61"
     end
   end
 
