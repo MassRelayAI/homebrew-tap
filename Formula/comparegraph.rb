@@ -1,9 +1,8 @@
 # Updated by .github/workflows/update.yml from the latest CompareGraph release; do not edit the url, sha256 or version by hand.
 class Comparegraph < Formula
-  desc "Compare many cloned repositories against taxonomy packs: one code graph, cited claims, a matrix"
+  desc "Compare cloned repositories against taxonomy packs with one code graph"
   homepage "https://github.com/massrelay-ai/comparegraph"
   license "Apache-2.0"
-  version "0.1.1"
 
   on_macos do
     on_arm do
@@ -32,6 +31,6 @@ class Comparegraph < Formula
   end
 
   test do
-    system "#{bin}/comparegraph", "--version"
+    system bin/"comparegraph", "--version"
   end
 end

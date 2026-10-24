@@ -1,9 +1,8 @@
 # Updated by .github/workflows/update.yml from the latest PersonaJury release; do not edit the url, sha256 or version by hand.
 class Personajury < Formula
-  desc "Run a jury of AI personas on your page, docs, deck or code change; the engine calls no model"
+  desc "Run a jury of AI personas on your work; the engine calls no model"
   homepage "https://github.com/massrelay-ai/personajury"
   license "Apache-2.0"
-  version "0.6.0"
 
   on_macos do
     on_arm do
@@ -32,6 +31,6 @@ class Personajury < Formula
   end
 
   test do
-    system "#{bin}/personajury", "--version"
+    system bin/"personajury", "--version"
   end
 end
