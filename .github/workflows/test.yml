@@ -1,0 +1,34 @@
+name: install each formula
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ['update formulas from the latest releases']
+    types: [completed]
+permissions:
+  contents: read
+jobs:
+  install:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, macos-13, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+      - name: Tap this checkout, install, test, audit
+        run: |
+          set -euo pipefail
+          [ "$RUNNER_OS" = Linux ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+          export HOMEBREW_NO_AUTO_UPDATE=1 HOMEBREW_NO_INSTALL_CLEANUP=1
+          brew tap massrelay-ai/tap "$GITHUB_WORKSPACE"
+          for tool in comparegraph personajury; do
+            brew install "massrelay-ai/tap/$tool"
+            brew test "massrelay-ai/tap/$tool"
+            brew audit --strict --formula "massrelay-ai/tap/$tool"
+            "$tool" --version
+          done

@@ -1,4 +1,4 @@
-name: update formula from the latest release
+name: update formulas from the latest releases
 on:
   schedule:
     - cron: '17 */6 * * *'
@@ -10,23 +10,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
-      - name: Rewrite version, urls and sums from the latest release
+      - name: Rewrite version, urls and sums from each tool's latest release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          tag=$(gh release view --repo massrelay-ai/comparegraph --json tagName -q .tagName)
-          version="${tag#v}"
-          curl -fsSL -o SHA256SUMS "https://github.com/massrelay-ai/comparegraph/releases/download/$tag/SHA256SUMS"
-          f=Formula/comparegraph.rb
-          sed -i "s|^  version \".*\"|  version \"$version\"|" "$f"
-          for p in darwin-arm64 darwin-x64 linux-arm64 linux-x64; do
-            sum=$(grep -E "[[:space:]]\*?comparegraph-$p\$" SHA256SUMS | cut -d' ' -f1)
-            [ -n "$sum" ] || { echo "no sum for $p in $tag"; exit 1; }
-            python3 scripts/stamp.py "$f" "$p" "$tag" "$sum"
-          done
-          rm SHA256SUMS
-          git diff --quiet && { echo "formula already at $tag"; exit 0; }
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -am "comparegraph $version" && git push
+          for tool in comparegraph personajury; do
+            tag=$(gh release view --repo "massrelay-ai/$tool" --json tagName -q .tagName)
+            version="${tag#v}"
+            curl -fsSL -o SHA256SUMS "https://github.com/massrelay-ai/$tool/releases/download/$tag/SHA256SUMS"
+            f="Formula/$tool.rb"
+            sed -i "s|^  version \".*\"|  version \"$version\"|" "$f"
+            for p in darwin-arm64 darwin-x64 linux-arm64 linux-x64; do
+              sum=$(grep -E "[[:space:]]\*?$tool-$p\$" SHA256SUMS | cut -d' ' -f1)
+              [ -n "$sum" ] || { echo "no sum for $tool-$p in $tag"; exit 1; }
+              python3 scripts/stamp.py "$tool" "$f" "$p" "$tag" "$sum"
+            done
+            rm SHA256SUMS
+            if git diff --quiet -- "$f"; then echo "$tool already at $tag"; else git commit -m "$tool $version" -- "$f"; fi
+          done
+          git push
