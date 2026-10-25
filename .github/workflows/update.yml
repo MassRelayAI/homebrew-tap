@@ -18,8 +18,8 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           for tool in comparegraph personajury; do
-            tag=$(gh release view --repo "massrelay-ai/$tool" --json tagName -q .tagName)
-            curl -fsSL -o SHA256SUMS "https://github.com/massrelay-ai/$tool/releases/download/$tag/SHA256SUMS"
+            tag=$(gh release view --repo "MassRelayAI/$tool" --json tagName -q .tagName)
+            curl -fsSL -o SHA256SUMS "https://github.com/MassRelayAI/$tool/releases/download/$tag/SHA256SUMS"
             f="Formula/$tool.rb"
             for p in darwin-arm64 darwin-x64 linux-arm64 linux-x64; do
               sum=$(grep -E "[[:space:]]\*?$tool-$p\$" SHA256SUMS | cut -d' ' -f1)
