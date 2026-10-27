@@ -25,10 +25,10 @@ jobs:
           set -euo pipefail
           [ "$RUNNER_OS" = Linux ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
           export HOMEBREW_NO_AUTO_UPDATE=1 HOMEBREW_NO_INSTALL_CLEANUP=1
-          brew tap massrelay-ai/tap "$GITHUB_WORKSPACE"
+          brew tap massrelayai/tap "$GITHUB_WORKSPACE"
           for tool in comparegraph personajury; do
-            brew install "massrelay-ai/tap/$tool"
-            brew test "massrelay-ai/tap/$tool"
-            brew audit --strict --formula "massrelay-ai/tap/$tool"
+            brew install "massrelayai/tap/$tool"
+            brew test "massrelayai/tap/$tool"
+            brew audit --strict --formula "massrelayai/tap/$tool"
             "$tool" --version
           done
