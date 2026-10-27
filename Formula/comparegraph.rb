@@ -6,23 +6,23 @@ class Comparegraph < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/massrelay-ai/comparegraph/releases/download/v0.1.1/comparegraph-darwin-arm64"
-      sha256 "e7021aa32cff8022e115f8421dfdb0ab59aa02393e84bbda7cacb240b7b192fc"
+      url "https://github.com/massrelay-ai/comparegraph/releases/download/v0.1.2/comparegraph-darwin-arm64"
+      sha256 "b41a40475fb68bff2e7ea174226c855d0a05b788e58bb0901e0917d3ccef6816"
     end
     on_intel do
-      url "https://github.com/massrelay-ai/comparegraph/releases/download/v0.1.1/comparegraph-darwin-x64"
-      sha256 "e91c70071645adc4dfe8bf4645e3b2e688286498619e28884caf2594bf6d2616"
+      url "https://github.com/massrelay-ai/comparegraph/releases/download/v0.1.2/comparegraph-darwin-x64"
+      sha256 "db133594707644abfcce8855833c73d905f59ab2cbeeb470b7f7a08118b1289a"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/massrelay-ai/comparegraph/releases/download/v0.1.1/comparegraph-linux-arm64"
-      sha256 "d82a04a38f5724acb520a012035204438e493dfd710da31237aa27c89c501492"
+      url "https://github.com/massrelay-ai/comparegraph/releases/download/v0.1.2/comparegraph-linux-arm64"
+      sha256 "d541cd4fc9dd0151eaa0784172e0bc6d7bf623d8f413dc471ce328db2e03773b"
     end
     on_intel do
-      url "https://github.com/massrelay-ai/comparegraph/releases/download/v0.1.1/comparegraph-linux-x64"
-      sha256 "a1cfff62359da814ec52c4028147efef5e799b1982df9f53a713fe757d5adc61"
+      url "https://github.com/massrelay-ai/comparegraph/releases/download/v0.1.2/comparegraph-linux-x64"
+      sha256 "b1ef6f022ce2bf19c5c4a364a89ce2b785fa5ec6db22f94fec05e68988d94006"
     end
   end
 
